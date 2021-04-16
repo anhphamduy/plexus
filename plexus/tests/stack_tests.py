@@ -31,19 +31,19 @@ class StackTests(unittest.TestCase):
         self.assertEqual(len(stack), 3)
 
         # pour no water
-        glasses = self.human.pour(30)
+        glasses = self.human.pour(stack, 30)
         self.assertEqual(glasses[0].current_capacity, 30)
         self.assertEqual(glasses[1].current_capacity, 0)
         self.assertEqual(glasses[2].current_capacity, 0)
 
         # pour an additional of 250ml water
-        glasses = self.human.pour(250)
+        glasses = self.human.pour(stack, 250)
         self.assertEqual(glasses[0].current_capacity, 250)
         self.assertEqual(glasses[1].current_capacity, 15)
         self.assertEqual(glasses[2].current_capacity, 15)
 
         # pour lot more water and glasses should all be filled up
-        glasses = self.human.pour(1000)
+        glasses = self.human.pour(stack, 1000)
         self.assertEqual(glasses[1].current_capacity, 250)
         self.assertEqual(glasses[2].current_capacity, 250)
 
@@ -52,7 +52,7 @@ class StackTests(unittest.TestCase):
         self.assertEqual(len(stack), 6)
 
         # pour no water
-        glasses = self.human.pour(30)
+        glasses = self.human.pour(stack, 30)
         self.assertEqual(glasses[0].current_capacity, 30)
         self.assertEqual(glasses[1].current_capacity, 0)
         self.assertEqual(glasses[2].current_capacity, 0)
@@ -61,7 +61,7 @@ class StackTests(unittest.TestCase):
         self.assertEqual(glasses[5].current_capacity, 0)
 
         # pour an additional of 250ml water
-        glasses = self.human.pour(250)
+        glasses = self.human.pour(stack, 250)
         self.assertEqual(glasses[0].current_capacity, 250)
         self.assertEqual(glasses[1].current_capacity, 15)
         self.assertEqual(glasses[2].current_capacity, 15)
