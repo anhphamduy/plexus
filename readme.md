@@ -22,7 +22,7 @@ python -m unittest
 
 #### Code that follows good design principles and shows that the engineer has an understanding for architecturing clean, simple and extensible systems. ✅
 
-SOLID was somewhat used.
+SOLID was used.
 
 #### Good object modeling. We are looking for object-oriented solution, even if you think procedural code would make more sense for this problem. ✅
 
