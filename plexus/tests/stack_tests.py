@@ -1,6 +1,7 @@
 import unittest
 
 from plexus import Stack
+from plexus.stack import StackSearcher
 
 
 class StackTests(unittest.TestCase):
@@ -93,38 +94,43 @@ class StackTests(unittest.TestCase):
         self.assertEqual(glasses[8].current_capacity, 150)
         self.assertEqual(glasses[9].current_capacity, 50)
 
-    def test_get_glass_from_one_level_stack(self):
+
+class StackSearcherTests(unittest.TestCase):
+    def setUp(self):
+        self.searcher = StackSearcher()
+
+    def test_search_glass_on_one_level_stack(self):
         stack = Stack(n_levels=1)
 
-        self.assertIs(stack.get_glass(0, 0), stack.glasses[0])
-        self.assertRaises(ValueError, lambda: stack.get_glass(0, 1))
-        self.assertRaises(ValueError, lambda: stack.get_glass(1, 0))
-        self.assertRaises(ValueError, lambda: stack.get_glass(-1, 0))
+        self.assertIs(self.searcher.search_glass(stack, 0, 0), stack.glasses[0])
+        self.assertRaises(ValueError, lambda: self.searcher.search_glass(stack, 0, 1))
+        self.assertRaises(ValueError, lambda: self.searcher.search_glass(stack, 1, 0))
+        self.assertRaises(ValueError, lambda: self.searcher.search_glass(stack, -1, 0))
 
-    def test_get_glass_from_two_level_stack(self):
+    def test_search_glass_on_two_level_stack(self):
         stack = Stack(n_levels=2)
 
-        self.assertIs(stack.get_glass(0, 0), stack.glasses[0])
-        self.assertIs(stack.get_glass(1, 0), stack.glasses[1])
-        self.assertIs(stack.get_glass(1, 1), stack.glasses[2])
+        self.assertIs(self.searcher.search_glass(stack, 0, 0), stack.glasses[0])
+        self.assertIs(self.searcher.search_glass(stack, 1, 0), stack.glasses[1])
+        self.assertIs(self.searcher.search_glass(stack, 1, 1), stack.glasses[2])
 
-        self.assertRaises(ValueError, lambda: stack.get_glass(0, 1))
-        self.assertRaises(ValueError, lambda: stack.get_glass(2, 0))
-        self.assertRaises(ValueError, lambda: stack.get_glass(1, 2))
-        self.assertRaises(ValueError, lambda: stack.get_glass(1, -1))
+        self.assertRaises(ValueError, lambda: self.searcher.search_glass(stack, 0, 1))
+        self.assertRaises(ValueError, lambda: self.searcher.search_glass(stack, 2, 0))
+        self.assertRaises(ValueError, lambda: self.searcher.search_glass(stack, 1, 2))
+        self.assertRaises(ValueError, lambda: self.searcher.search_glass(stack, 1, -1))
 
-    def test_get_glass_from_three_level_stack(self):
+    def test_search_glass_on_three_level_stack(self):
         stack = Stack(n_levels=3)
 
-        self.assertIs(stack.get_glass(0, 0), stack.glasses[0])
-        self.assertIs(stack.get_glass(1, 0), stack.glasses[1])
-        self.assertIs(stack.get_glass(1, 1), stack.glasses[2])
-        self.assertIs(stack.get_glass(2, 0), stack.glasses[3])
-        self.assertIs(stack.get_glass(2, 1), stack.glasses[4])
-        self.assertIs(stack.get_glass(2, 2), stack.glasses[5])
+        self.assertIs(self.searcher.search_glass(stack, 0, 0), stack.glasses[0])
+        self.assertIs(self.searcher.search_glass(stack, 1, 0), stack.glasses[1])
+        self.assertIs(self.searcher.search_glass(stack, 1, 1), stack.glasses[2])
+        self.assertIs(self.searcher.search_glass(stack, 2, 0), stack.glasses[3])
+        self.assertIs(self.searcher.search_glass(stack, 2, 1), stack.glasses[4])
+        self.assertIs(self.searcher.search_glass(stack, 2, 2), stack.glasses[5])
 
-        self.assertRaises(ValueError, lambda: stack.get_glass(2, 3))
-        self.assertRaises(ValueError, lambda: stack.get_glass(2, 4))
-        self.assertRaises(ValueError, lambda: stack.get_glass(3, 2))
-        self.assertRaises(ValueError, lambda: stack.get_glass(-1, 0))
-        self.assertRaises(ValueError, lambda: stack.get_glass(3, -1))
+        self.assertRaises(ValueError, lambda: self.searcher.search_glass(stack, 2, 3))
+        self.assertRaises(ValueError, lambda: self.searcher.search_glass(stack, 2, 4))
+        self.assertRaises(ValueError, lambda: self.searcher.search_glass(stack, 3, 2))
+        self.assertRaises(ValueError, lambda: self.searcher.search_glass(stack, -1, 0))
+        self.assertRaises(ValueError, lambda: self.searcher.search_glass(stack, 3, -1))
