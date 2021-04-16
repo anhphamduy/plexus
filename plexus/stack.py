@@ -49,6 +49,9 @@ class Stack:
         """
         self.glasses += [Glass() for _ in range(depth)]
 
+    def __len__(self):
+        return len(self.glasses)
+
 
 class Human:
     """ Represents a human doing action entity """
