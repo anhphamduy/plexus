@@ -49,7 +49,10 @@ class Stack:
         :return: Glass[]
             An updated list of glasses
         """
-        raise NotImplementedError()
+        self.n_levels += 1
+        self._initialise_level(self.n_levels)
+
+        return self.glasses
 
     def _initialise_level(self, depth):
         """
