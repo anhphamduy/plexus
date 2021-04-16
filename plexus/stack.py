@@ -42,6 +42,13 @@ class Stack:
 
         return self.glasses
 
+    def get_glasses(self):
+        """
+        Gets a list of glasses following flattened binary tree pattern
+        :return: Glass[]
+        """
+        return self.glasses
+
     def _initialise_level(self, depth):
         """
         Initialises a new stack level

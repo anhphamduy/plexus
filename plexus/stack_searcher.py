@@ -19,4 +19,4 @@ class StackSearcher:
         # get the level offset in the binary tree array
         level_offset = ((i + 1) * i) // 2
 
-        return stack.glasses[level_offset + j]
+        return stack.get_glasses()[level_offset + j]

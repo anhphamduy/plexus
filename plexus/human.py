@@ -14,9 +14,9 @@ class Human:
         :return: Glass[]
             An updated list of glasses
         """
-        self._pour(stack.glasses, water_amount)
+        self._pour(stack.get_glasses(), water_amount)
 
-        return stack.glasses
+        return stack.get_glasses()
 
     def _pour(self, glasses, water_amount, depth=0):
         """
