@@ -1,4 +1,6 @@
 class Glass:
+    """ Represents a glass entity """
+
     MAX_CAPACITY = 250
 
     def __init__(self, current_capacity=0):
