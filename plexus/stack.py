@@ -38,16 +38,6 @@ class Stack:
         self.n_levels = n_levels
         raise NotImplementedError()
 
-    def pour(self, water_amount):
-        """
-        Pours water into the stack of glasses
-        :param water_amount: number
-            The amount of water to be poured into
-        :return: Glass[]
-            An updated list of glasses
-        """
-        raise NotImplementedError()
-
     def add_level(self):
         """
         Adds a new glass level to the current stack of glasses
@@ -56,15 +46,19 @@ class Stack:
         """
         raise NotImplementedError()
 
-    def get_glass(self, depth, j):
+
+class Human:
+    """ Represents a human doing action entity """
+
+    def pour(self, stack, water_amount):
         """
-        Gets a glass from the stack of the glasses based on the position
-        :param depth: number
-            The x position of the glass
-        :param j: number
-            The y position of the glass
-        :return: Glass
-            The glass that is on (x, y)
+        Pours water into the stack of glasses
+        :param stack: Stack
+            The stack to be poured into
+        :param water_amount: number
+            The amount of water to be poured into the stack
+        :return: Glass[]
+            An updated list of glasses
         """
         raise NotImplementedError()
 
@@ -84,4 +78,10 @@ class StackSearcher:
         :return: Glass
             The glass that is on (x, y)
         """
-        raise NotImplementedError()
+        if j > i or i < 0 or (i + 1) > stack.n_levels or j < 0:
+            raise ValueError("Invalid inputs")
+
+        # get the level offset in the binary tree array
+        level_offset = ((i + 1) * i) // 2
+
+        return self.glasses[level_offset + j]
