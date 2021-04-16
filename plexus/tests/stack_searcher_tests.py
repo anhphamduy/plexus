@@ -1,6 +1,7 @@
 import unittest
 
-from plexus.stack import StackSearcher, Stack
+from plexus.stack import Stack
+from plexus.stack_searcher import StackSearcher
 
 
 class StackSearcherTests(unittest.TestCase):

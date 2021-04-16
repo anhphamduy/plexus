@@ -1,6 +1,7 @@
 import unittest
 
-from plexus.stack import Stack, Human
+from plexus.human import Human
+from plexus.stack import Stack
 
 
 class HumanTests(unittest.TestCase):
