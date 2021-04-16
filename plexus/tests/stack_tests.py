@@ -1,10 +1,13 @@
 import unittest
 
 from plexus import Stack
-from plexus.stack import StackSearcher
+from plexus.stack import StackSearcher, Human
 
 
 class StackTests(unittest.TestCase):
+
+    def setUp(self):
+        self.human = Human()
 
     def test_pour_for_one_level_stack(self):
         stack = Stack(n_levels=1)
@@ -12,35 +15,35 @@ class StackTests(unittest.TestCase):
 
         # pour no water
         water_amount = 0
-        stack.pour(water_amount)
-        self.assertEqual(stack.glasses[0].current_capacity, water_amount)
+        glasses = self.human.pour(stack, water_amount)
+        self.assertEqual(glasses[0].current_capacity, water_amount)
 
         # pour an additional of 250ml water
-        stack.pour(250)
-        self.assertEqual(stack.glasses[0].current_capacity, 250)
+        glasses = self.human.pour(stack, 250)
+        self.assertEqual(glasses[0].current_capacity, 250)
 
         # pour more water and the state should not change
-        stack.pour(300)
-        self.assertEqual(stack.glasses[0].current_capacity, 250)
+        glasses = self.human.pour(stack, 300)
+        self.assertEqual(glasses[0].current_capacity, 250)
 
     def test_pour_for_two_level_stack(self):
         stack = Stack(n_levels=2)
         self.assertEqual(len(stack), 3)
 
         # pour no water
-        glasses = stack.pour(30)
+        glasses = self.human.pour(30)
         self.assertEqual(glasses[0].current_capacity, 30)
         self.assertEqual(glasses[1].current_capacity, 0)
         self.assertEqual(glasses[2].current_capacity, 0)
 
         # pour an additional of 250ml water
-        glasses = stack.pour(250)
+        glasses = self.human.pour(250)
         self.assertEqual(glasses[0].current_capacity, 250)
         self.assertEqual(glasses[1].current_capacity, 15)
         self.assertEqual(glasses[2].current_capacity, 15)
 
         # pour lot more water and glasses should all be filled up
-        glasses = stack.pour(1000)
+        glasses = self.human.pour(1000)
         self.assertEqual(glasses[1].current_capacity, 250)
         self.assertEqual(glasses[2].current_capacity, 250)
 
@@ -49,7 +52,7 @@ class StackTests(unittest.TestCase):
         self.assertEqual(len(stack), 6)
 
         # pour no water
-        glasses = stack.pour(30)
+        glasses = self.human.pour(30)
         self.assertEqual(glasses[0].current_capacity, 30)
         self.assertEqual(glasses[1].current_capacity, 0)
         self.assertEqual(glasses[2].current_capacity, 0)
@@ -58,7 +61,7 @@ class StackTests(unittest.TestCase):
         self.assertEqual(glasses[5].current_capacity, 0)
 
         # pour an additional of 250ml water
-        glasses = stack.pour(250)
+        glasses = self.human.pour(250)
         self.assertEqual(glasses[0].current_capacity, 250)
         self.assertEqual(glasses[1].current_capacity, 15)
         self.assertEqual(glasses[2].current_capacity, 15)
@@ -67,7 +70,7 @@ class StackTests(unittest.TestCase):
         self.assertEqual(glasses[5].current_capacity, 0)
 
         # pour an additional of 500ml water
-        glasses = stack.pour(500)
+        glasses = self.human.pour(stack, 500)
         self.assertEqual(glasses[0].current_capacity, 250)
         self.assertEqual(glasses[1].current_capacity, 250)
         self.assertEqual(glasses[2].current_capacity, 250)
@@ -76,7 +79,7 @@ class StackTests(unittest.TestCase):
         self.assertEqual(glasses[5].current_capacity, 7.5)
 
         # fill up everything
-        glasses = stack.pour(1000)
+        glasses = self.human.pour(stack, 1000)
         self.assertEqual(glasses[0].current_capacity, 250)
         self.assertEqual(glasses[1].current_capacity, 250)
         self.assertEqual(glasses[2].current_capacity, 250)
@@ -88,7 +91,7 @@ class StackTests(unittest.TestCase):
         stack.add_level()
         self.assertEqual(len(stack), 1 + 2 + 3 + 4)
 
-        stack.pour(400)
+        self.human.pour(stack, 400)
         self.assertEqual(glasses[6].current_capacity, 50)
         self.assertEqual(glasses[7].current_capacity, 150)
         self.assertEqual(glasses[8].current_capacity, 150)
@@ -96,6 +99,7 @@ class StackTests(unittest.TestCase):
 
 
 class StackSearcherTests(unittest.TestCase):
+
     def setUp(self):
         self.searcher = StackSearcher()
 
