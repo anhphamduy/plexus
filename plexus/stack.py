@@ -67,3 +67,21 @@ class Stack:
             The glass that is on (x, y)
         """
         raise NotImplementedError()
+
+
+class StackSearcher:
+    """ A searcher to search glasses on stack based on some given criteria """
+
+    def search_glass(self, stack, i, j):
+        """
+        Gets a glass from the stack of the glasses based on the position
+        :param stack: Stack
+            The stack that needs to be searched from
+        :param i: number
+            The x position of the glass
+        :param j: number
+            The y position of the glass
+        :return: Glass
+            The glass that is on (x, y)
+        """
+        raise NotImplementedError()
