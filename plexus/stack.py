@@ -1,3 +1,6 @@
+from plexus.glass import Glass
+
+
 class Stack:
     """
     A Stack to represent a stack of glasses.
@@ -35,8 +38,10 @@ class Stack:
 
     def __init__(self, n_levels):
         self.glasses = []
+        for i in range(n_levels):
+            self._initialise_level(i + 1)
+
         self.n_levels = n_levels
-        raise NotImplementedError()
 
     def add_level(self):
         """
@@ -45,6 +50,13 @@ class Stack:
             An updated list of glasses
         """
         raise NotImplementedError()
+
+    def _initialise_level(self, depth):
+        """
+        Initialises a new stack level
+        :param depth: The depth of the level
+        """
+        self.glasses += [Glass() for _ in range(depth)]
 
 
 class Human:
